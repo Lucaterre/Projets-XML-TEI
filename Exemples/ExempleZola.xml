@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+   schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+
+   <teiHeader>
+
+      <!--1) Métadonnées -->
+
+      <fileDesc>
+         <titleStmt>
+            <title>L'Assommoir</title>
+            <author>
+               <forename>Émile</forename>
+               <surname>Zola</surname>
+            </author>
+            <editor>G. Charpentier</editor>
+            <respStmt>
+               <resp>Encodage XML/TEI dans le cadre d'un CC</resp>
+               <persName>
+                  <forename>Lucas</forename>
+                  <surname>Terriel</surname>
+               </persName>
+            </respStmt>
+         </titleStmt>
+
+         <!--2) Précision sur la source du document  -->
+
+         <publicationStmt>
+            <publisher>G. Charpentier</publisher>
+            <pubPlace>Paris</pubPlace>
+            <date when-iso="1877">1877</date>
+            <distributor facs="https://fr.wikisource.org/wiki/L%E2%80%99Assommoir/Chapitre_III"
+               >Wikisource</distributor>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by-sa/3.0/deed.fr">Licence
+                  Creative Commons Attribution-partage dans les mêmes conditions</licence>
+            </availability>
+         </publicationStmt>
+
+         <!-- 3) Document utilisé pour l'édition -->
+
+         <sourceDesc>
+            <bibl>
+               <title type="collection">Les Rougon-Macquart</title>
+               <title type="subtitle">Histoire naturelle et sociale d'une famille sous le Second Empire</title>
+               <title type="main">L'Assommoir</title>
+               <author>
+                  <forename>Émile</forename>
+                  <surname>Zola</surname>
+               </author>
+               <editor>
+                  <forename>Georges</forename>
+                  <surname>Charpentier</surname>
+               </editor>
+               <edition>édition de<date when-iso="1879"> 1879</date></edition>
+               <distributor facs="https://fr.wikisource.org/wiki/L%E2%80%99Assommoir/Chapitre_III"
+                  >Wikisource</distributor>
+               <pubPlace>
+                  <address>
+                     <addrLine>13, rue de Grenelle-Saint-Germain</addrLine>
+                     <addrLine>Paris</addrLine>
+                  </address>
+               </pubPlace>
+               <biblScope unit="volume" n="7"/>
+               <biblScope unit="chapitre" n="3"/>
+               <biblScope unit="page" from="78" to="119">pp.78-119</biblScope>
+               <availability>
+                  <licence target="https://creativecommons.org/licenses/by-sa/3.0/deed.fr">Licence
+                     Creative Commons Attribution-partage dans les mêmes conditions</licence>
+               </availability>
+            </bibl>
+         </sourceDesc>
+      </fileDesc>
+
+
+
+      <!--                                     :::REMARQUES SUR LA PRESENTE EDITION ELECTRONIQUE::: 
+         
+         - Pour cette édition, la construction de l'index des personnages et des lieux se donne pour but de proposer une première structuration minimaliste qui puisse rendre compte des lieux de l'action du chapitre 
+         et des déplacements des personnages dans le Paris du XIXe siècle en fonction de leur métiers, âges, leur genre, et/ou relations... 
+         cette structuration pourrai constituer le point de départ à des dévellopements ultérieurs qui réponderai, par exemple, à la  problématique plus large 
+         qui consisterai à étudier le glissement de l'espace privé à l'espace public dans le roman réaliste et aux barrières et limites géo-sociales qui s'imposent aux personnages.
+         
+         -Le choix des éléments et des attributs XML-TEI pour cette première structuration à des fins hypothétiques d'analyses sont décrits dans la méthodologie suivante : 
+         
+         :::METHODOLOGIE DE L'INDEX:::
+         
+         L'index est contenu dans une balise <profileDesc>
+         
+         B) Index des personnages : 
+         
+         <particDesc> : contient les locuteurs identifiables du texte et contient :
+         <listPerson> : contient l'ensemble des locuteurs et contient : 
+         <person> : reçoit @xml:id / @age (young, mid, ou old) / @sex (optionnel notamment dans le cas des groupes de personnes comme les couples Cf.remarque_1) et contient :
+         <persname> : pour d'éventuelles précisions sur le prénom, le nom et/ou le surnom
+         <occupation> : pour décrire le métier (optionnel)
+         <note> : pour évoquer des liens avec d'autres personnes ou des lieux (optionnel)
+         
+         remarque_1 : Ici, les familles (Lorilleux ou Boche), pour des raisons de facilité, sont considérées dans l'index comme une personne (<person>) et non comme une organisation (<org>) 
+         
+         
+         A) Index des lieux : 
+         <settingDesc> : contient l'ensemble des description des lieux et contient :
+         <listPlace> : contient l'ensemble des lieux du texte et contient :
+         <place> :  reçoit @xml:id / @type (voiries, quartier, monument, institution, commerce, restaurant) et contient :
+         <placeName> : contient le nom du lieu
+         <district> : pour l'arrondissement parisien (@type="arrondissement")
+         <settlement> : s'il s'agit d'un lieu en dehors de l'épicentre parisen
+         <note> : commentaire éventuel sur le lieu ou relation avec d'autres lieu
+         
+         - Concernant 4) Corps du texte structuré : l'élément <pb> renvoi à la pagination de la source extraite de Wikisource (correspond t-elle à la pagination originale ?), l'élément <persName> prend en compte seulement les personnages explicitement nommés dans le texte ce qui exclut les pronoms, les noms qui désigne des relations familiales ou matrimoniales tel que : femme, mari, frère, soeur, beau-frère..., l'élement <placeName> ne prend en compte que les lieux explicitement nommés ce qui exclut les noms du type : maison, appartement, place...
+         
+      -->
+
+      <profileDesc>
+         <particDesc>
+            <listPerson>
+               <head>Index des personnages</head>
+               <person xml:id="Gervaise" age="mid" sex="f">
+                  <persName>
+                     <forename>Gervaise</forename>
+                     <surname>Macquart</surname>
+                  </persName>
+                  <occupation>blanchisseuse</occupation>
+                  <note/>
+               </person>
+               <person xml:id="Coupeau" age="mid" sex="m">
+                  <persName>Coupeau</persName>
+                  <occupation>zingeur</occupation>
+                  <note/>
+               </person>
+               <person xml:id="Auguste" age="mid" sex="m">
+                  <persName>
+                     <forename>Auguste</forename>
+                     <surname>Lantier</surname>
+                  </persName>
+                  <occupation>ouvrier-tanneur</occupation>
+                  <occupation>chapelier</occupation>
+                  <note/>
+               </person>
+               <person xml:id="Madinier" age="mid" sex="m">
+                  <persName>M. Madinier</persName>
+                  <occupation>cartonneur</occupation>
+                  <note>locataire de la <placeName ref="#Rue_de_la_Goutte-d_Or"
+                        >Goutte-d'or</placeName></note>
+               </person>
+               <person xml:id="Remanjou" age="old" sex="f">
+                  <persName>Mademoiselle Remanjou</persName>
+                  <note>locataire de la <placeName ref="#Rue_de_la_Goutte-d_Or"
+                        >Goutte-d'or</placeName></note>
+               </person>
+               <person xml:id="Gaudron" age="mid" sex="f">
+                  <persName>Madame Gaudron</persName>
+                  <note/>
+               </person>
+               <person xml:id="Bibi-la-Grillade" age="mid" sex="m">
+                  <persName>Bibi-la-Grillade</persName>
+                  <occupation>ouvrier tanneur</occupation>
+                  <note>témoin de <persName ref="#Coupeau">Coupeau</persName></note>
+               </person>
+               <person xml:id="Mes-Bottes" age="mid" sex="m">
+                  <persName>Mes-Bottes</persName>
+                  <occupation>sans travail</occupation>
+                  <note>compagnon de boisson de <persName ref="#Coupeau">Coupeau</persName></note>
+                  <note/>
+               </person>
+               <person xml:id="Fauconnier" age="mid" sex="f">
+                  <persName>Madame Fauconnier</persName>
+                  <occupation>blanchisseuse</occupation>
+                  <note/>
+               </person>
+               <person xml:id="Boche" age="mid"> 
+                  <persName>Boche</persName>
+                  <occupation>concierges</occupation>
+               </person>
+               <person xml:id="Claude" age="young" sex="m">
+                  <persName>
+                     <forename>Claude</forename>
+                     <surname>Lantier</surname>
+                  </persName>
+                  <note>fils ainé de <persName ref="#Gervaise">Gervaise</persName> et de <persName
+                        ref="#Auguste">Auguste</persName></note>
+               </person>
+               <person xml:id="Etienne" age="young" sex="m">
+                  <persName>
+                     <forename>Étienne</forename>
+                     <surname>Lantier</surname>
+                  </persName>
+                  <note>second fils de <persName ref="#Gervaise">Gervaise</persName> et de <persName
+                        ref="#Auguste">Auguste</persName></note>
+               </person>
+               <person xml:id="Lorilleux" age="mid">
+                  <persName>Lorilleux</persName>
+                  <occupation>Ouvriers bijoutiers</occupation>
+                  <note>soeur et beau-frère de <persName ref="#Coupeau">Coupeau</persName></note>
+                  <note/>
+               </person>
+            </listPerson>
+         </particDesc>
+         <settingDesc>
+            <listPlace>
+               <head>Index des lieux</head>
+               <place xml:id="Moulin-d_Argent" type="Restaurant">
+                  <placeName>Moulin-d'Argent</placeName>
+                  <district type="arrondissement">Xème</district>
+                  <district type="arrondissement">XVIIIème</district>
+                  <note>Lieu qui se situe <placeName ref="#Boulevard_de_la_Chapelle"> boulevard de
+                        la Chapelle</placeName></note>
+               </place>
+               <place xml:id="Boulevard_de_la_Chapelle" type="Boulevard">
+                  <placeName>Boulevard de la Chapelle</placeName>
+                  <district type="arrondissement">Xème</district>
+                  <district type="arrondissement">XVIIIème</district>
+                  <note>Boulevard où se situe le <placeName ref="#Moulin-d_Argent">
+                        Moulin-d’Argent</placeName></note>
+               </place>
+               <place xml:id="Rue_de_la_Goutte-d_Or" type="Rue">
+                  <placeName>Rue de la Goutte-d’Or</placeName>
+                  <district type="arrondissement">XVIIIème</district>
+               </place>
+               <place xml:id="Rue_Myrrha" type="Rue">
+                  <placeName>Rue Myrrha</placeName>
+                  <district type="arrondissement">XVIIIème</district>
+               </place>
+               <place xml:id="Rue_du_Faubourg-Poissonnière" type="Rue">
+                  <placeName>Rue du Faubourg-Poissonnière</placeName>
+                  <district type="arrondissement">IXème</district>
+                  <district type="arrondissement">Xème</district>
+               </place>
+               <place xml:id="Plaine_Saint-Denis" type="Quartier">
+                  <placeName>Plaine Saint-Denis <settlement>Saint-Denis</settlement>
+                     <settlement>Aubervilliers</settlement>
+                  </placeName>
+               </place>
+            </listPlace>
+         </settingDesc>
+      </profileDesc>
+      <revisionDesc>
+         <list>
+            <item>
+               <date when="2019-11-20">20 novembre 2019</date>Dernière révision par L.T.
+            </item>
+         </list>
+      </revisionDesc>
+   </teiHeader>
+
+   <!-- 4) Corps du texte structuré -->
+
+   <text>
+      <body>
+         <pb n="78"/>
+         <div type="chapitre" n="3">
+            <p><persName ref="#Gervaise">Gervaise</persName> ne voulait pas de noce. À quoi bon
+               dépenser de l’argent ? Puis, elle restait un peu honteuse ; il lui semblait inutile
+               d’étaler le mariage devant tout le quartier. Mais <persName ref="#Coupeau"
+                  >Coupeau</persName> se récriait : on ne pouvait pas se marier comme ça, sans
+               manger un morceau ensemble. Lui, se battait joliment l’œil du quartier ! Oh ! quelque
+               chose de tout simple, un petit tour de balade l’après-midi, en attendant d’aller
+               tordre le cou à un lapin, au premier gargot venu. Et pas de musique au dessert, bien
+               sûr, pas de clarinette pour secouer le panier aux crottes des dames. Histoire de
+               trinquer seulement, avant de revenir faire dodo chacun chez soi.</p>
+            <p>Le zingueur, plaisantant, rigolant, décida la jeune femme, lorsqu’il lui eut juré
+               qu’on ne s’amuserait pas. Il aurait l’œil sur les verres, pour empêcher les coups de
+               soleil. Alors, il organisa un pique-nique à cent sous par tête, chez <persName
+                  ref="#Auguste">Auguste</persName>, au <placeName ref="#Moulin-d_Argent"
+                  >Moulin-d’Argent</placeName>, <placeName ref="#Boulevard_de_la_Chapelle">boulevard
+                  de la Chapelle</placeName>. C’était un petit marchand de vin dans les prix doux,
+               qui avait un bastringue au fond de son arrière-boutique, sous les trois acacias de sa
+               cour. Au premier, on serait parfaitement bien. Pendant dix jours, il racola des
+               convives, dans la maison de sa sœur, <placeName ref="#Rue_de_la_Goutte-d_Or">rue de
+                  la Goutte-d’Or</placeName> :</p>
+            <pb n="79"/>
+            <p><persName ref="#Madinier">M. Madinier</persName>, <persName ref="#Remanjou"
+                  >mademoiselle Remanjou</persName>, <persName ref="#Gaudron">madame
+                  Gaudron</persName> et son mari. Il finit même par faire accepter à <persName
+                  ref="#Gervaise">Gervaise</persName> deux camarades, <persName
+                  ref="#Bibi-la-Grillade">Bibi-la-Grillade</persName> et <persName ref="#Mes-Bottes"
+                  >Mes-Bottes</persName> : sans doute <persName ref="#Mes-Bottes"
+                  >Mes-Bottes</persName> levait le coude, mais il avait un appétit si farce, qu’on
+               l’invitait toujours dans les pique-nique, à cause de la tête du marchand de soupe en
+               voyant ce sacré trou-là avaler ses douze livres de pain. La jeune femme, de son côté,
+               promit d’amener sa patronne, <persName ref="#Fauconnier">madame
+               Fauconnier</persName>, et <persName ref="#Boche">les Boche</persName>, de très braves
+               gens. Tout compte fait, on se trouverait quinze à table. C’était assez. Quand on est
+               trop de monde, ça se termine toujours par des disputes.</p>
+            <p>Cependant, <persName ref="#Coupeau">Coupeau</persName> n’avait pas le sou. Sans
+               chercher à crâner, il entendait agir en homme propre. Il emprunta cinquante francs à
+               son patron. Là-dessus, il acheta d’abord l’alliance, une alliance d’or de douze
+               francs, que <persName ref="#Lorilleux">Lorilleux</persName> lui procura en fabrique
+               pour neuf francs. Il se commanda ensuite une redingote, un pantalon et un gilet, chez
+               un tailleur de la <placeName ref="#Rue_Myrrha">rue Myrrha</placeName>, auquel il
+               donna seulement un acompte de vingt-cinq francs ; ses souliers vernis et son bolivar
+               pouvaient encore marcher. Quand il eut mis de côté les dix francs du pique-nique, son
+               écot et celui de <persName ref="#Gervaise">Gervaise</persName>, les enfants devant
+               passer par-dessus le marché, il lui resta tout juste six francs, le prix d’une messe
+               à l’autel des pauvres. Certes, il n’aimait pas les corbeaux, ça lui crevait le cœur
+               de porter ses six francs à ces galfatres-là, qui n’en avaient pas besoin pour se
+               tenir le gosier frais. Mais un mariage sans messe, on avait beau dire, ce n’était pas
+               un mariage. Il alla lui-même à l’église marchander ; et, pendant une heure, il
+               s’attrapa avec un vieux petit prêtre, en soutane sale, voleur comme une fruitière. Il
+               avait envie de lui ficher des calottes.</p>
+            <pb n="80"/>
+            <p>Puis, par blague, il lui demanda s’il ne trouverait pas, dans sa boutique, une messe
+               d’occasion, point trop détériorée, et dont un couple bon enfant ferait encore son
+               beurre. Le vieux petit prêtre, tout en grognant que Dieu n’aurait aucun plaisir à
+               bénir son union, finit par lui laisser sa messe à cinq francs. C’était toujours vingt
+               sous d’économie. Il lui restait vingt sous.</p>
+            <p><persName ref="#Gervaise">Gervaise</persName>, elle aussi, tenait à être propre. Dès
+               que le mariage fut décidé, elle s’arrangea, fit des heures en plus, le soir, arriva à
+               mettre trente francs de côté. Elle avait une grosse envie d’un petit mantelet de
+               soie, affiché treize francs, <placeName ref="#Rue_du_Faubourg-Poissonnière">rue du
+                  Faubourg-Poissonnière</placeName>. Elle se le paya, puis racheta pour dix francs
+               au mari d’une blanchisseuse, morte dans la maison de <persName ref="#Fauconnier"
+                  >madame Fauconnier</persName>, une robe de laine gros bleu, qu’elle refit
+               complètement à sa taille. Avec les sept francs qui restaient, elle eut une paire de
+               gants de coton, une rose pour son bonnet et des souliers pour son aîné <persName
+                  ref="#Claude">Claude</persName>. Heureusement les petits avaient des blouses
+               possibles. Elle passa quatre nuits, nettoyant tout, visitant jusqu’aux plus petits
+               trous de ses bas et de sa chemise.</p>
+            <p>Enfin, le vendredi soir, la veille du grand jour, <persName ref="#Gervaise"
+                  >Gervaise</persName> et <persName ref="#Coupeau">Coupeau</persName>, en rentrant
+               du travail, eurent encore à trimer jusqu’à onze heures. Puis, avant de se coucher
+               chacun chez soi, ils passèrent une heure ensemble, dans la chambre de la jeune femme,
+               bien contents d’être au bout de cet embarras. Malgré leur résolution de ne pas se
+               casser les côtes pour le quartier, ils avaient fini par prendre les choses à cœur et
+               par s’éreinter. Quand ils se dirent bonsoir, ils dormaient debout. Mais, tout de
+               même, ils poussaient un gros soupir de soulagement. Maintenant, c’était réglé.
+                  <persName ref="#Coupeau">Coupeau</persName> avait pour témoins <persName
+                  ref="#Madinier">M. Madinier</persName></p>
+            <pb n="81"/>
+            <p>et <persName ref="#Bibi-la-Grillade">Bibi-la-Grillade</persName> ; <persName
+                  ref="#Gervaise">Gervaise</persName> comptait sur <persName ref="#Lorilleux"
+                  >Lorilleux</persName> et sur <persName ref="#Boche">Boche</persName> On devait
+               aller tranquillement à la mairie et à l’église, tous les six, sans traîner derrière
+               soi une queue de monde. Les deux sœurs du marié avaient même déclaré qu’elles
+               resteraient chez elles, leur présence n’étant pas nécessaire. Seule maman <persName
+                  ref="#Coupeau">Coupeau</persName> s’était mise à pleurer, en disant qu’elle
+               partirait plutôt en avant, pour se cacher dans un coin ; et on avait promis de
+               l’emmener. Quant au rendez-vous de toute la société, il était fixé à une heure, au
+                  <placeName ref="Moulin-d_Argent">Moulin-d’Argent</placeName>. De là on irait
+               gagner la faim dans la <placeName ref="#Plaine_Saint-Denis">plaine
+                  Saint-Denis</placeName> ; on prendrait le chemin de fer et on retournerait à
+               pattes, le long de la grande route. La partie s’annonçait très bien, pas une bosse à
+               tout avaler, mais un brin de rigolade, quelque chose de gentil et d’honnête.</p>
+            <p>Le samedi matin, en s’habillant, <persName ref="#Coupeau">Coupeau</persName> fut pris
+               d’inquiétude, devant sa pièce de vingt sous. Il venait de songer que, par politesse,
+               il lui faudrait offrir un verre de vin et une tranche de jambon aux témoins, en
+               attendant le dîner. Puis, il y aurait peut-être des frais imprévus. Décidément, vingt
+               sous, ça ne suffisait pas. Alors, après s’être chargé de conduire <persName
+                  ref="#Claude">Claude</persName> et <persName ref="#Etienne">Étienne</persName>
+               chez <persName ref="#Boche">madame Boche</persName>, qui devait les amener le soir au
+               dîner, il courut <placeName ref="#Rue_de_la_Goutte-d_Or">rue de la
+                  Goutte-d’Or</placeName> et monta carrément emprunter dix francs à <persName
+                  ref="#Lorilleux">Lorilleux</persName>. Par exemple, ça lui écorchait le gosier,
+               car il s’attendait à la grimace de son beau-frère. Celui-ci grogna, ricana d’un air
+               de mauvaise bête, et finalement prêta les deux pièces de cent sous. Mais <persName
+                  ref="#Coupeau">Coupeau</persName> entendit sa sœur qui disait entre ses dents que
+               « ça commençait bien. »</p>
+            <p>Le mariage à la mairie était pour dix heures et demie. Il faisait très beau, un
+               soleil du tonnerre, rôtissant les rues. Pour ne pas être regardés, les mariés, la</p>
+            <pb n="82"/>
+            <p>maman et les quatre témoins se séparèrent en deux bandes. En avant, <persName
+                  ref="#Gervaise">Gervaise</persName> marchait au bras de <persName ref="#Lorilleux"
+                  >Lorilleux</persName>, tandis que <persName ref="#Madinier">M. Madinier</persName>
+               conduisait maman <persName ref="#Coupeau">Coupeau</persName> ; puis, à vingt pas, sur
+               l’autre trottoir, venaient <persName ref="#Coupeau">Coupeau</persName>, <persName
+                  ref="#Boche">Boche</persName> et <persName ref="#Bibi-la-Grillade"
+                  >Bibi-la-Grillade</persName>. Ces trois-là étaient en redingote noire, le dos
+               rond, les bras ballants ; <persName ref="#Boche">Boche</persName> avait un pantalon
+               jaune ; <persName ref="#Bibi-la-Grillade">Bibi-la-Grillade</persName>, boutonné
+               jusqu’au cou, sans gilet, laissait passer seulement un coin de cravate roulé en
+               corde. Seul, <persName ref="#Madinier">M. Madinier</persName> portait un habit, un
+               grand habit à queue carrée ; et les passants s’arrêtaient pour voir ce monsieur
+               promenant la grosse mère <persName ref="#Coupeau">Coupeau</persName>, en châle vert,
+               en bonnet noir, avec des rubans rouges. <persName ref="#Gervaise"
+               >Gervaise</persName>, très douce, gaie, dans sa robe d’un bleu dur, les épaules
+               serrées sous son étroit mantelet, écoutait complaisamment les ricanements de
+                  <persName ref="#Lorilleux">Lorilleux</persName>, perdu au fond d’un immense
+               paletot sac, malgré la chaleur ; puis, de temps à autre, au coude des rues, elle
+               tournait un peu la tête, jetait un fin sourire à <persName ref="#Coupeau"
+                  >Coupeau</persName>, que ses vêtements neufs, luisant au soleil, gênaient.</p>
+         </div>
+      </body>
+   </text>
+</TEI>
