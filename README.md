@@ -1,2 +1,2 @@
 # Projets-XML-TEI
-Réalisations dans le cadre du master TNAH
+Réalisations et modèles divers dans le cadre du master TNAH
