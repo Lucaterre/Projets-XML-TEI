@@ -24,7 +24,7 @@
             <sourceDesc>
                 <listWit>
                     <!-- Codices quorum varia lectiones in omnibus locislaudantur : -->
-                    <witness xml:id="V">Université de Leyde,  Vossianus XIX q. 51 saec. x.</witness>
+                    <witness xml:id="V">Université de Leyde,  Vossianus XIX q. 51 saec. x.<date when="0900">10e siècle</date></witness>
                     <witness xml:id="M">Université de Montpellier, Montepessulanus H 113 saec. IX aut X.</witness> <!-- bien mettre les noms d'universités, manque Va ??-->
                     <witness xml:id="M1">primitiva lectio correcta in vulgatam (sic A1, U1, rell.).</witness>
                     <witness xml:id="m">Varia lectio in eidem codici a manu secunda.</witness>
